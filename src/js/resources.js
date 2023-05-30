@@ -1,9 +1,29 @@
 import { ImageSource, Sound, Resource, Loader } from 'excalibur'
-import fishImage from '../images/fish.png'
+import amoImage from '../images/Screenshot_14.jpg'
+import petah from '../images/Peter_Griffin.png'
+import homah from '../images/homah.png'
+import holyf from '../images/holyf.mp3'
+import scream from '../images/scream.mp3'
+import sonofa from '../images/sonofa.mp3'
+import gnome from '../images/Gnome sound effect.mp3'
+import dud from '../images/The_dud.png'
+import smasnug from '../images/smasnug.png'
+import crab from '../images/Crab.jpg'
+import baman from '../images/Baman.png'
 
 const Resources = {
-    Fish: new ImageSource(fishImage)
+    amo: new ImageSource(amoImage),
+    petah: new ImageSource(petah),
+    dud: new ImageSource(dud),
+    holyf: new Sound(holyf),
+    gnome: new Sound(gnome),
+    homah: new ImageSource(homah),
+    scream: new Sound(scream),
+    sonofa: new Sound(sonofa),
+    smasnug: new ImageSource(smasnug),
+    crab: new ImageSource(crab),
+    baman: new ImageSource(baman)
 }
-const ResourceLoader = new Loader([Resources.Fish])
+const ResourceLoader = new Loader([Resources.amo, Resources.petah, Resources.dud, Resources.holyf, Resources.scream, Resources.baman, Resources.gnome, Resources.sonofa, Resources.homah, Resources.crab, Resources.smasnug])
 
 export { Resources, ResourceLoader }
