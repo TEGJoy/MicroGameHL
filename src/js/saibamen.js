@@ -9,9 +9,8 @@ export class saibamen extends Actor {
         engine.input.gamepads.enabled = true;
 
         this.graphics.use(Resources.baman.toSprite())
-        this.pos = new Vector(300, 300) 
+        this.pos = new Vector(0, 300) 
         this.on('collisionstart', (event) => this.hitSomething(event))
-        this.enableCapturePointer = true
         this.pointer.useGraphicsBounds = true
     }
     onPreUpdate(engine) {
@@ -42,7 +41,7 @@ export class saibamen extends Actor {
     }
     onPostUpdate(engine){
         let controller = engine.input.gamepads
-        console.log(controller.at(0).getAxes(Input.Axes.LeftStickX))
+        //console.log(controller.at(0).getAxes(Input.Axes.LeftStickX))
     }
     hitSomething(event){
         if(event.other instanceof human) {

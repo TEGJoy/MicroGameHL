@@ -4,8 +4,10 @@ import { human } from "./human.js";
 import { Resources } from "./resources"
 export class ui extends Actor {
     mainText
+    human
     constructor() {
         super();
+        this.totalScore = 0;
     }
     onInitialize(engine){
         this.mainText = new Label({
@@ -30,18 +32,19 @@ export class ui extends Actor {
         let kb = engine.input.keyboard
 
         if (kb.isHeld(Input.Keys.S) && this.mainText.text == "Press the S key to begin") {
-            this.mainText.pos = new Vector(50, 100);
-            this.mainText.text =  "People exploded: 0";
+            this.mainText.pos = new Vector(200, 50);
+            this.mainText.text =  "Points gained: 0";
             
             const player = new saibamen();
             //const fodder = new human();
             engine.add(player);
             for(let i = 0; i < 5; i++){
-                engine.add(new human(
-                    Math.random() * (this.drawWidth - 50) + 50,
-                    Math.random() * (this.drawHeight - 50) + 50
-                ))
+                console.log("Spawn in")
+                engine.add(new human(this))
             }
         }
+    }
+    updateScore(score){
+        this.mainText.text = `Points gained: ${this.totalScore += score}`
     }
 }
