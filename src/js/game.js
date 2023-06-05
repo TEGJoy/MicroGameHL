@@ -5,23 +5,24 @@ import { player } from './player'
 import { saibamen } from './saibamen'
 import { background } from './background'
 import { human } from './human'
-import { ui } from './ui'
 import { Game1 } from './scenes/game1'
-let games = ["game1", "game2", "game3"];
+import { GameOver } from './scenes/gameover'
+import { explanationScreen } from './scenes/explanationscreen'
 export class Game extends Engine {
     
     constructor() {
-        super({ width: 800, height: 600 })
+        super({ width: 1280, height: 720 })
         this.start(ResourceLoader).then(() => this.everythingLoaded())
     }
     everythingLoaded() {
         this.addScene('game1', new Game1())
+        this.addScene('explanationScreen', new explanationScreen())
+        this.addScene('gameover', new GameOver())
         /*
-        this.add('game2', new Game2())
         this.add('game3', new Game3())
         this.add('gameover', new GameOver())
         */
-        this.goToScene('game1')
+        this.goToScene('explanationScreen')
     }
     /*
     startGame() {

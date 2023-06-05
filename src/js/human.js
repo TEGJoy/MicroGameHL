@@ -1,18 +1,20 @@
 import { Actor, Input, Random, Vector, clamp } from "excalibur"
 import { Resources } from "./resources"
-import { ui } from "./ui"
+import { userInterface } from "./userinterface"
+import { Armor } from "./armor"
 export class human extends Actor {
-    ui;
+    userInterface;
+    armor;
 
-    constructor(ui){
+    constructor(userInterface){
         super({width:Resources.dud.width, height:Resources.dud.height})
-        this.ui = ui;
+        this.userInterface = userInterface;
+        this.armor = new Armor()
     }
     onInitialize(engine){
         this.rand = new Random()
-
         this.graphics.use(Resources.dud.toSprite())
-        this.pos = new Vector(this.rand.integer(0, 500), this.rand.integer(0,500)) 
+        this.pos = new Vector(this.rand.integer(0, 1000), this.rand.integer(0,600)) 
         
         this.pointer.useGraphicsBounds = true
     }
@@ -26,6 +28,7 @@ export class human extends Actor {
     hitBySaibamen(event){
         console.log("Fuck")
         this.kill();
-        this.ui.updateScore(10)
+        this.userInterface.updateScore(10)
+        console.log(this.armor)
     }
 }

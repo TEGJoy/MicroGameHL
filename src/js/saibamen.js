@@ -2,16 +2,19 @@ import { Actor, Input, Random, Vector, clamp } from "excalibur"
 import { Resources } from "./resources"
 import { human } from "./human"
 export class saibamen extends Actor {
-    constructor(){
+    game;
+    scene;
+    constructor(scene){
         super({width:100, height:100})
+        this.graphics.use(Resources.baman.toSprite())
+        this.pos = new Vector(100, 300) 
+        this.pointer.useGraphicsBounds = true
+        this.scene = scene
     }
     onInitialize(engine){
+        this.game = engine
         engine.input.gamepads.enabled = true;
-
-        this.graphics.use(Resources.baman.toSprite())
-        this.pos = new Vector(0, 300) 
         this.on('collisionstart', (event) => this.hitSomething(event))
-        this.pointer.useGraphicsBounds = true
     }
     onPreUpdate(engine) {
 
@@ -20,7 +23,6 @@ export class saibamen extends Actor {
 
         let kb = engine.input.keyboard
         let controller = engine.input.gamepads
-        console.log(Input.Axes.LeftStickX)
         if (kb.isHeld(Input.Keys.W) || kb.isHeld(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
             yspeed = -300
         }
@@ -48,5 +50,12 @@ export class saibamen extends Actor {
                 console.log("Boom");
                 event.other.hitBySaibamen();
         }
+    }
+    Upgrade(){
+        console.log("LETS FUCKING GOOO")
+        //this.kill()
+    }
+    onPostKill(){
+        this.scene.newSaibamen("yellow")
     }
 }
