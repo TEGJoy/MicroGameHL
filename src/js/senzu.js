@@ -2,18 +2,18 @@ import { Actor, Input, Random, Vector, clamp } from "excalibur"
 import { Resources } from "./resources"
 import { userInterface } from "./userinterface"
 import { Armor } from "./armor"
-export class human extends Actor {
+import { ImmovableObject } from "./immovableObject";
+export class senzu extends Actor {
     userInterface;
     armor;
 
-    constructor(userInterface){
-        super({width:Resources.dud.width, height:Resources.dud.height})
-        this.userInterface = userInterface;
-        this.armor = new Armor()
+    constructor(scene){
+        super({width:Resources.bean.width, height:Resources.bean.height})
+        this.scene = scene;
     }
     onInitialize(engine){
         this.rand = new Random()
-        this.graphics.use(Resources.dud.toSprite())
+        this.graphics.use(Resources.bean.toSprite())
         this.pos = new Vector(this.rand.integer(0, 1000), this.rand.integer(0,600)) 
         
         this.pointer.useGraphicsBounds = true
@@ -28,8 +28,7 @@ export class human extends Actor {
     hitBySaibamen(event){
         console.log("Fuck")
         this.kill();
-        this.userInterface.updateScore(10)
-        console.log(this.armor)
+        this.scene.remainingTime+=10
     }
     dissapear(){
         this.kill();

@@ -1,9 +1,10 @@
-import { Actor, Engine, Vector, Label, Font, Color, Random, CollisionGroupManager, CollisionGroup, BoundingBox, EdgeCollider, Scene, Timer} from "excalibur"
+import { Actor, Engine, Vector, Label, Font, Color, Random, CollisionGroupManager, CollisionGroup, BoundingBox, EdgeCollider, Scene, Timer, randomInRange} from "excalibur"
 import { Resources, ResourceLoader } from '../resources.js'
 import { saibamen } from '../saibamen'
 import { background } from '../background'
 import { human } from '../human'
 import { userInterface } from "../userinterface.js"
+import { senzu } from '../senzu.js'
 let games = ["game1", "game2", "game3"];
 export class Game1 extends Scene {
     
@@ -11,6 +12,7 @@ export class Game1 extends Scene {
     userInterface;
     character;
     remainingTime;
+    senzuSpawned;
     constructor() {
         super({ width: 1280, height: 720 })
         this.character = new saibamen(this)
@@ -19,6 +21,7 @@ export class Game1 extends Scene {
     onInitialize(engine) {
         this.game = engine
         this.remainingTime = 60
+        this.senzuSpawned = 0
         /*
         const timer = new Timer({
             fcn: () => this.spawnHumans("extraParam"),      
@@ -40,19 +43,28 @@ export class Game1 extends Scene {
         console.log("start de game, scene 1!")
          this.add(this.userInterface)
          this.add(this.character)
+         this.rand = new Random()
          const timer = new Timer({
             fcn: () => this.spawnHumans(),      
             repeats: true,      
-            interval: 2000,  })  
+            interval: 2000,  
+        })
+        const senzuTimer = new Timer({
+            fcn: () => this.spawnSenzu(),
+            repeats: true,
+            interval: this.rand.integer(1000, 50000)
+        })  
         const timeTimer = new Timer({
             fcn: () => this.updateTimer(),      
             repeats: true,      
-            interval: 1000,  }) 
+            interval: 1000,  
+        }) 
         this.game.currentScene.add(timer) 
         this.game.currentScene.add(timeTimer) 
+        this.game.currentScene.add(senzuTimer)
         timer.start()
         timeTimer.start()
-        
+        senzuTimer.start()
     }
 
     loadEverything() {
@@ -62,8 +74,19 @@ export class Game1 extends Scene {
             
     }
     spawnHumans(){
+        let a = new human(this.userInterface)
+        this.add(a)
+        const timer = new Timer({
+            fcn: () => this.despawnHuman(a),      
+            repeats: false,      
+            interval: 3000,  
+        })
+        this.game.currentScene.add(timer)
+        timer.start()  
+    }
+    despawnHuman(a){
         console.log("test")
-        this.add(new human(this.userInterface))
+        a.dissapear()
     }
     onPreUpdate(game){
         console.log(this.userInterface.totalAmount())
@@ -80,7 +103,24 @@ export class Game1 extends Scene {
             this.character.Upgrade()
         }
     }
-    newSaibamen(color){
-        console.log(color)
+    spawnSenzu(){
+        if(this.senzuSpawned == 0){
+            //do something
+            this.senzuSpawned = 1;
+            let senzuBean = new senzu(this);
+            this.add(senzuBean)
+            const timer = new Timer({
+                fcn: () => this.despawnSenzu(senzuBean),      
+                repeats: false,      
+                interval: 3000,  
+            })
+            this.game.currentScene.add(timer)
+            timer.start()  
+        } 
+        return
+    }
+    despawnSenzu(senzuBean){
+        senzuBean.dissapear()
+        this.senzuSpawned = 0
     }
 }

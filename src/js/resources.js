@@ -10,6 +10,7 @@ import dud from '../images/The_dud.png'
 import smasnug from '../images/smasnug.png'
 import crab from '../images/Crab.jpg'
 import baman from '../images/Baman.png'
+import bean from '../images/bean.png'
 import bns from '../images/bns.jpg'
 import berry from '../images/oranberryblissey.jpg'
 const Resources = {
@@ -25,9 +26,9 @@ const Resources = {
     crab: new ImageSource(crab),
     baman: new ImageSource(baman),
     bns: new ImageSource(bns),
-    berry: new ImageSource(berry)
-
+    berry: new ImageSource(berry),
+    bean: new ImageSource(bean)
 }
-const ResourceLoader = new Loader([Resources.amo, Resources.petah, Resources.dud, Resources.holyf, Resources.scream, Resources.baman, Resources.gnome, Resources.sonofa, Resources.homah, Resources.crab, Resources.smasnug, Resources.bns, Resources.berry])
+const ResourceLoader = new Loader([Resources.amo, Resources.petah, Resources.dud, Resources.holyf, Resources.scream, Resources.baman, Resources.gnome, Resources.sonofa, Resources.homah, Resources.crab, Resources.smasnug, Resources.bns, Resources.berry,Resources.bean])
 
 export { Resources, ResourceLoader }

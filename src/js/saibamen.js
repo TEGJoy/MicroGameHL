@@ -1,6 +1,8 @@
 import { Actor, Input, Random, Vector, clamp } from "excalibur"
 import { Resources } from "./resources"
 import { human } from "./human"
+import { senzu } from "./senzu"
+//import { dash } from "./dash";
 export class saibamen extends Actor {
     game;
     scene;
@@ -10,6 +12,7 @@ export class saibamen extends Actor {
         this.pos = new Vector(100, 300) 
         this.pointer.useGraphicsBounds = true
         this.scene = scene
+        //this.dash = new dash()
     }
     onInitialize(engine){
         this.game = engine
@@ -25,15 +28,27 @@ export class saibamen extends Actor {
         let controller = engine.input.gamepads
         if (kb.isHeld(Input.Keys.W) || kb.isHeld(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
             yspeed = -300
+            if(kb.isHeld(Input.Keys.ShiftLeft)){
+                yspeed = -400
+            }
         }
         if (kb.isHeld(Input.Keys.S) || kb.isHeld(Input.Keys.Down)  || controller.at(0).getAxes(Input.Axes.LeftStickY) > 0.5) {
             yspeed = 300
+            if(kb.isHeld(Input.Keys.ShiftLeft)){
+                yspeed = 400
+            }
         }
         if (kb.isHeld(Input.Keys.A) || kb.isHeld(Input.Keys.Left) || controller.at(0).getAxes(Input.Axes.LeftStickX) < -0.5) {
             xspeed = -300
+            if(kb.isHeld(Input.Keys.ShiftLeft)){
+                xspeed = -400
+            }
         }
         if (kb.isHeld(Input.Keys.D) || kb.isHeld(Input.Keys.Right) || controller.at(0).getAxes(Input.Axes.LeftStickX) > 0.5) {
             xspeed = 300
+            if(kb.isHeld(Input.Keys.ShiftLeft)){
+                xspeed = 400
+            }
         }
 
         this.vel = new Vector(xspeed, yspeed)
@@ -49,6 +64,10 @@ export class saibamen extends Actor {
         if(event.other instanceof human) {
                 console.log("Boom");
                 event.other.hitBySaibamen();
+        }
+        if(event.other instanceof senzu){
+            console.log("Tasty")
+            event.other.hitBySaibamen();
         }
     }
     Upgrade(){
