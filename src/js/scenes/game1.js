@@ -50,12 +50,12 @@ export class Game1 extends Scene {
          const timer = new Timer({
             fcn: () => this.spawnHumans(),      
             repeats: true,      
-            interval: this.rand.integer(800, 2000),  
+            interval: this.rand.integer(300, 1200),  
         })
         const senzuTimer = new Timer({
             fcn: () => this.spawnSenzu(),
             repeats: true,
-            interval: this.rand.integer(1000, 50000)
+            interval: this.rand.integer(1000, 30000)
         })  
         const timeTimer = new Timer({
             fcn: () => this.updateTimer(),      
@@ -82,7 +82,7 @@ export class Game1 extends Scene {
         const timer = new Timer({
             fcn: () => this.despawnHuman(a),      
             repeats: false,      
-            interval: 3000,  
+            interval: 2000,  
         })
         this.game.currentScene.add(timer)
         timer.start()  
@@ -102,9 +102,9 @@ export class Game1 extends Scene {
         this.userInterface.timerText.text = `Time remaining: ${this.remainingTime--}`
     }
     upgradePlayer(total){
-        if(total == 10){
+        if(total == 100){
             this.character.Upgrade(1)
-        } else if(total == 20){
+        } else if(total == 250){
             this.character.Upgrade(2)
         }
     }
@@ -117,7 +117,7 @@ export class Game1 extends Scene {
             const timer = new Timer({
                 fcn: () => this.despawnSenzu(senzuBean),      
                 repeats: false,      
-                interval: 3000,  
+                interval: 1500,  
             })
             this.game.currentScene.add(timer)
             timer.start()  
