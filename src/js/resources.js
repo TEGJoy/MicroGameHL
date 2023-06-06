@@ -29,7 +29,8 @@ const Resources = {
     bns: new ImageSource(bns),
     berry: new ImageSource(berry),
     bean: new ImageSource(bean),
-    yamcha: new ImageSource(yamcha)
+    yamcha: new ImageSource(yamcha),
+    
 }
 const ResourceLoader = new Loader([Resources.amo, Resources.petah, Resources.dud, Resources.holyf, Resources.scream, Resources.baman, Resources.gnome, Resources.sonofa, Resources.homah, Resources.crab, Resources.smasnug, Resources.bns, Resources.berry,Resources.bean, Resources.yamcha])
 

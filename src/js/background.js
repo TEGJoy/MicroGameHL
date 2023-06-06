@@ -18,14 +18,25 @@ export class background extends Actor {
                 break;
             case "game2":
                 this.graphics.use(Resources.crab.toSprite())
-                this.scale = new Vector(4,2)
+                this.scale = new Vector(3,2)
                 this.pos = new Vector(400,300)
                 break;
             case "game3":
                 this.graphics.use(Resources.smasnug.toSprite())
-                this.scale = new Vector(4,2)
+                this.scale = new Vector(3,2)
                 this.pos = new Vector(400,300)
                 break;
+            case "game4":
+                this.graphics.use(Resources.berry.toSprite())
+                this.scale = new Vector(2,2)
+                this.pos = new Vector(700,300)
+                break;
+            case "game5":
+                this.graphics.use(Resources.homah.toSprite())
+                this.scale = new Vector(7,5)
+                this.pos = new Vector(700,300)
+                break;
+
         }
     }
 }

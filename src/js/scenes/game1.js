@@ -6,9 +6,8 @@ import { human } from '../human'
 import { nappa } from "../nappa.js"
 import { userInterface } from "../userinterface.js"
 import { senzu } from '../senzu.js'
-let games = ["game1", "game2", "game3"];
+let games = ["game1", "game2", "game3", "game4", "game5"];
 export class Game1 extends Scene {
-    
     game;
     userInterface;
     character;
@@ -37,17 +36,17 @@ export class Game1 extends Scene {
     onActivate(ctx) {
         console.log("Scene has started");
         this.startGame()
-        this.remainingTime = 4
+        this.remainingTime = 60
     }
     startGame() {
+        this.rand = new Random()
          //Background 
          const bg = new background()
-         bg.placeBG("game1");
+         bg.placeBG(this.rand.pickOne(games));
          this.add(bg);
         console.log("start de game, scene 1!")
          this.add(this.userInterface)
          this.add(this.character)
-         this.rand = new Random()
          const timer = new Timer({
             fcn: () => this.spawnHumans(),      
             repeats: true,      
