@@ -42,7 +42,7 @@ export class Game1 extends Scene {
         this.rand = new Random()
          //Background 
          const bg = new background()
-         bg.placeBG(/*this.rand.pickOne(games)*/"game6");
+         bg.placeBG(this.rand.pickOne(games));
          this.add(bg);
         console.log("start de game, scene 1!")
          this.add(this.userInterface)
