@@ -1,16 +1,16 @@
-import { Actor, Engine, Vector, Label, Font, Color, Random, CollisionGroupManager, CollisionGroup, BoundingBox, EdgeCollider, Scene, Timer} from "excalibur"
+import { Actor, Engine, Vector, Label, Font, Color, Random, CollisionGroupManager, CollisionGroup, BoundingBox, EdgeCollider, Scene, Timer, Input} from "excalibur"
 import { Resources, ResourceLoader } from '../resources.js'
 import { userInterface } from "../userinterface.js"
 export class GameOver extends Scene {
 
     userInterface;
-
+    game;
     constructor() {
         super({ width: 1280, height: 720 });
     }
 
     onInitialize(engine) {
-        
+        this.game = engine
         /*
         Resources.backgroundMusic.stop(0.7)
         Resources.gameoverMusic.play(0.7)
@@ -38,5 +38,11 @@ export class GameOver extends Scene {
         this.totalAmount = ctx.data
         this.userInterface = new userInterface(this, 1, this.totalAmount)
         this.add(this.userInterface)
+    }
+    onPreUpdate(game){
+        let kb = this.game.input.keyboard
+        if (kb.isHeld(Input.Keys.Space)) {
+            this.game.goToScene('game1')
+        }
     }
 }

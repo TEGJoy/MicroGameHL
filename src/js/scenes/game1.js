@@ -37,6 +37,7 @@ export class Game1 extends Scene {
     onActivate(ctx) {
         console.log("Scene has started");
         this.startGame()
+        this.remainingTime = 4
     }
     startGame() {
          //Background 
@@ -50,12 +51,12 @@ export class Game1 extends Scene {
          const timer = new Timer({
             fcn: () => this.spawnHumans(),      
             repeats: true,      
-            interval: 2000,  
+            interval: this.rand.integer(1000, 4000),  
         })
         const senzuTimer = new Timer({
             fcn: () => this.spawnSenzu(),
             repeats: true,
-            interval: this.rand.integer(1000, 1001)
+            interval: this.rand.integer(1000, 50000)
         })  
         const timeTimer = new Timer({
             fcn: () => this.updateTimer(),      

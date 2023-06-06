@@ -99,7 +99,7 @@ export class userInterface extends Actor {
     }
     gameOver(){
         this.gameOverText = new Label({
-            pos: new Vector(500, 400),
+            pos: new Vector(600, 300),
             text: `Its all ogre, total amount of points: ${this.totalAmountPoints}`,
             font: new Font({
                 family: 'arial',
@@ -113,15 +113,9 @@ export class userInterface extends Actor {
                 textAlign: TextAlign.Center
                 })
             })
-            this.scene.add(this.gameOverText)
-    }
-    totalAmount(){
-        return this.totalScore
-    }
-    explanation(){
-        this.gameOverText = new Label({
-            pos: new Vector(500, 400),
-            text: `Destroy all humans`,
+        this.restartText = new Label({
+            pos: new Vector(600, 600),
+            text: `Refresh to restart (scuffed)`,
             font: new Font({
                 family: 'arial',
                 // style: FontStyle.Italic,
@@ -135,5 +129,61 @@ export class userInterface extends Actor {
                 })
             })
             this.scene.add(this.gameOverText)
+            this.scene.add(this.restartText)
+    }
+    totalAmount(){
+        return this.totalScore
+    }
+    explanation(){
+        this.gameOverText = new Label({
+            pos: new Vector(600, 50),
+            text: `Destroy all humans!`,
+            font: new Font({
+                family: 'arial',
+                // style: FontStyle.Italic,
+                size: 40,
+                strokeColor: Color.Black,
+                lineWidth: 2,
+                bold: true,
+                color: Color.White,
+                baseAlign: BaseAlign.Top,
+                textAlign: TextAlign.Center
+                })
+            })
+        this.explanationText = new Label({
+            pos: new Vector(600, 300),
+            text: `Movement: WASD 
+Sprint: Shift
+            Collect points to upgrade!`,
+            font: new Font({
+                family: 'arial',
+                // style: FontStyle.Italic,
+                size: 40,
+                strokeColor: Color.Black,
+                lineWidth: 2,
+                bold: true,
+                color: Color.White,
+                baseAlign: BaseAlign.Top,
+                textAlign: TextAlign.Center
+                })
+            })
+            this.startText = new Label({
+                pos: new Vector(600, 600),
+                text: `Press spacebar to start`,
+                font: new Font({
+                    family: 'arial',
+                    // style: FontStyle.Italic,
+                    size: 40,
+                    strokeColor: Color.Black,
+                    lineWidth: 2,
+                    bold: true,
+                    color: Color.White,
+                    baseAlign: BaseAlign.Top,
+                    textAlign: TextAlign.Center
+                    })
+                })
+        this.scene.add(this.gameOverText)
+        this.scene.add(this.explanationText)
+        this.scene.add(this.startText)
     }
 }
