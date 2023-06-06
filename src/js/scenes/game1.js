@@ -6,7 +6,7 @@ import { human } from '../human'
 import { nappa } from "../nappa.js"
 import { userInterface } from "../userinterface.js"
 import { senzu } from '../senzu.js'
-let games = ["game1", "game2", "game3", "game4", "game5"];
+let games = ["game1", "game2", "game3", "game4", "game5", "game6"];
 export class Game1 extends Scene {
     game;
     userInterface;
@@ -42,7 +42,7 @@ export class Game1 extends Scene {
         this.rand = new Random()
          //Background 
          const bg = new background()
-         bg.placeBG(this.rand.pickOne(games));
+         bg.placeBG(/*this.rand.pickOne(games)*/"game6");
          this.add(bg);
         console.log("start de game, scene 1!")
          this.add(this.userInterface)
@@ -50,7 +50,7 @@ export class Game1 extends Scene {
          const timer = new Timer({
             fcn: () => this.spawnHumans(),      
             repeats: true,      
-            interval: this.rand.integer(1000, 4000),  
+            interval: this.rand.integer(800, 2000),  
         })
         const senzuTimer = new Timer({
             fcn: () => this.spawnSenzu(),
@@ -129,6 +129,14 @@ export class Game1 extends Scene {
         this.senzuSpawned = 0
     }
     addNewCharacter(character, spawnedIn){  
+        this.userInterface.evolveText()
+        const evolveTimer = new Timer({
+            fcn: () => this.userInterface.deleteText(),      
+            repeats: false,      
+            interval: 2000,  
+        })
+        this.game.currentScene.add(evolveTimer)
+        evolveTimer.start()
         if(this.spawnedIn == 2){
             this.character = character
             this.add(character)

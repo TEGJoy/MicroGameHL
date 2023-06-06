@@ -10,13 +10,14 @@ export class vegeta extends Actor {
     game;
     scene;
     sprint;
+    skillsList;
     constructor(scene){
         super({width:100, height:100})
-        this.graphics.use(Resources.baman.toSprite())
-        this.pos = new Vector(100, 700) 
+        this.graphics.use(Resources.vegetable.toSprite())
+        this.pos = new Vector(100, 300) 
         this.pointer.useGraphicsBounds = true
         this.scene = scene
-        this.skills = new skills(["dash",400,-400])
+        this.skillsList = new skills(["dash",800,-800])
         this.sprint = new dash(800, -800)
         //this.dash = new dash()
     }
@@ -35,25 +36,25 @@ export class vegeta extends Actor {
         if (kb.isHeld(Input.Keys.W) || kb.isHeld(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
             yspeed = -700
             if(kb.isHeld(Input.Keys.ShiftLeft)){
-                yspeed = this.sprint.dashNegative()
+                yspeed = this.skillsList.dashNegative()
             }
         }
         if (kb.isHeld(Input.Keys.S) || kb.isHeld(Input.Keys.Down)  || controller.at(0).getAxes(Input.Axes.LeftStickY) > 0.5) {
             yspeed = 700
             if(kb.isHeld(Input.Keys.ShiftLeft)){
-                yspeed = this.sprint.dashPositive()
+                yspeed = this.skillsList.dashPositive()
             }
         }
         if (kb.isHeld(Input.Keys.A) || kb.isHeld(Input.Keys.Left) || controller.at(0).getAxes(Input.Axes.LeftStickX) < -0.5) {
             xspeed = -700
             if(kb.isHeld(Input.Keys.ShiftLeft)){
-                xspeed = this.sprint.dashNegative()
+                xspeed = this.skillsList.dashNegative()
             }
         }
         if (kb.isHeld(Input.Keys.D) || kb.isHeld(Input.Keys.Right) || controller.at(0).getAxes(Input.Axes.LeftStickX) > 0.5) {
             xspeed = 700
             if(kb.isHeld(Input.Keys.ShiftLeft)){
-                xspeed = this.sprint.dashPositive()
+                xspeed = this.skillsList.dashPositive()
             }
         }
 

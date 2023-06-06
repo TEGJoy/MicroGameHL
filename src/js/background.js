@@ -13,6 +13,7 @@ export class background extends Actor {
         switch(scene){
             case "game1":
                 this.graphics.use(Resources.bns.toSprite())
+                Resources.bnsSong.play(0.3)
                 this.scale = new Vector(1.5, 2)
                 this.pos = new Vector(600,400)
                 break;
@@ -36,7 +37,12 @@ export class background extends Actor {
                 this.scale = new Vector(7,5)
                 this.pos = new Vector(700,300)
                 break;
-
+            case "game6":
+                    this.graphics.use(Resources.ps.toSprite())
+                    Resources.pss.play(0.3)
+                    this.scale = new Vector(3,2)
+                    this.pos = new Vector(700,300)
+                    break;
         }
     }
 }

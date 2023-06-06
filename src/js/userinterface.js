@@ -1,4 +1,4 @@
-import {Actor, BaseAlign, Color, Font, FontStyle, Label, TextAlign, vec, Vector, Input} from "excalibur";
+import {Actor, BaseAlign, Color, Font, FontStyle, Label, TextAlign, vec, Vector, Input, Timer} from "excalibur";
 import { saibamen } from "./saibamen.js";
 import { human } from "./human.js";
 import { Resources } from "./resources.js"
@@ -11,6 +11,7 @@ export class userInterface extends Actor {
     scene
     timerText
     totalAmountPoints
+    textEvolve
     constructor(scene,gameover,totalAmount) {
         super();
         this.totalScore = 0;
@@ -185,5 +186,27 @@ Sprint: Shift
         this.scene.add(this.gameOverText)
         this.scene.add(this.explanationText)
         this.scene.add(this.startText)
+    }
+    evolveText(){
+        this.textEvolve = new Label({
+            pos: new Vector(900, 150),
+            text: `Character evolved!`,
+            font: new Font({
+                family: 'arial',
+                // style: FontStyle.Italic,
+                size: 40,
+                strokeColor: Color.Black,
+                lineWidth: 2,
+                bold: true,
+                color: Color.White,
+                baseAlign: BaseAlign.Top,
+                textAlign: TextAlign.Center
+                })
+            })
+            this.scene.add(this.textEvolve)
+        }
+    deleteText(){
+        console.log("Fortnite balls")
+        this.textEvolve.text = ""
     }
 }

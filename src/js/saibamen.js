@@ -88,7 +88,6 @@ export class saibamen extends Actor {
         }
     }
     onPostKill(){
-        console.log("nappa spawn in")
         this.scene.addNewCharacter(new nappa(), 1)
     }
 }

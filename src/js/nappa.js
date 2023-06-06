@@ -13,11 +13,11 @@ export class nappa extends Actor {
     skillsList;
     constructor(scene){
         super({width:100, height:100})
-        this.graphics.use(Resources.baman.toSprite())
-        this.pos = new Vector(100, 500) 
+        this.graphics.use(Resources.napper.toSprite())
+        this.pos = new Vector(100, 300) 
         this.pointer.useGraphicsBounds = true
         this.scene = scene
-        this.skillsList = new skills(["dash",400,-400])
+        this.skillsList = new skills(["dash",600,-600])
         this.sprint = new dash(600, -600)
         console.log(this.sprint)
         //this.dash = new dash()
@@ -37,25 +37,25 @@ export class nappa extends Actor {
         if (kb.isHeld(Input.Keys.W) || kb.isHeld(Input.Keys.Up)  || controller.at(0).getAxes(Input.Axes.LeftStickY) < -0.5) {
             yspeed = -500
             if(kb.isHeld(Input.Keys.ShiftLeft)){
-                yspeed = this.sprint.dashNegative()
+                yspeed = this.skillsList.dashNegative()
             }
         }
         if (kb.isHeld(Input.Keys.S) || kb.isHeld(Input.Keys.Down)  || controller.at(0).getAxes(Input.Axes.LeftStickY) > 0.5) {
             yspeed = 500
             if(kb.isHeld(Input.Keys.ShiftLeft)){
-                yspeed = this.sprint.dashPositive()
+                yspeed = this.skillsList.dashPositive()
             }
         }
         if (kb.isHeld(Input.Keys.A) || kb.isHeld(Input.Keys.Left) || controller.at(0).getAxes(Input.Axes.LeftStickX) < -0.5) {
             xspeed = -500
             if(kb.isHeld(Input.Keys.ShiftLeft)){
-                xspeed = this.sprint.dashNegative()
+                xspeed = this.skillsList.dashNegative()
             }
         }
         if (kb.isHeld(Input.Keys.D) || kb.isHeld(Input.Keys.Right) || controller.at(0).getAxes(Input.Axes.LeftStickX) > 0.5) {
             xspeed = 500
             if(kb.isHeld(Input.Keys.ShiftLeft)){
-                xspeed = this.sprint.dashPositive()
+                xspeed = this.skillsList.dashPositive()
             }
         }
 
