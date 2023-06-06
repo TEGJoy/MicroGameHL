@@ -1,13 +1,16 @@
 import { saibamen } from "./saibamen";
-
-class dash extends saibamen{
-    xspeed;
-    yspeed;
-    constructor(){
-        this.xspeed = 600
-        this.yspeed = 600
+import { skills } from "./skills";
+export class dash{
+    posSpeed;
+    negSpeed;
+    constructor(posSpeed, negSpeed){
+        this.posSpeed = posSpeed
+        this.negSpeed = negSpeed
     }
-    dash(){
-        
+    dashPositive(){
+     return this.posSpeed
+    }
+    dashNegative(){
+    return this.negSpeed
     }
 }

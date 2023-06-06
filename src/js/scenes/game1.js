@@ -3,6 +3,7 @@ import { Resources, ResourceLoader } from '../resources.js'
 import { saibamen } from '../saibamen'
 import { background } from '../background'
 import { human } from '../human'
+import { nappa } from "../nappa.js"
 import { userInterface } from "../userinterface.js"
 import { senzu } from '../senzu.js'
 let games = ["game1", "game2", "game3"];
@@ -16,6 +17,8 @@ export class Game1 extends Scene {
     constructor() {
         super({ width: 1280, height: 720 })
         this.character = new saibamen(this)
+        this.nappa = new nappa(this)
+        this.spawnedIn = 0
         this.userInterface = new userInterface(this)
     }
     onInitialize(engine) {
@@ -52,7 +55,7 @@ export class Game1 extends Scene {
         const senzuTimer = new Timer({
             fcn: () => this.spawnSenzu(),
             repeats: true,
-            interval: this.rand.integer(1000, 50000)
+            interval: this.rand.integer(1000, 1001)
         })  
         const timeTimer = new Timer({
             fcn: () => this.updateTimer(),      
@@ -99,8 +102,10 @@ export class Game1 extends Scene {
         this.userInterface.timerText.text = `Time remaining: ${this.remainingTime--}`
     }
     upgradePlayer(total){
-        if(total >= 10){
-            this.character.Upgrade()
+        if(total == 10){
+            this.character.Upgrade(1)
+        } else if(total == 20){
+            this.character.Upgrade(2)
         }
     }
     spawnSenzu(){
@@ -122,5 +127,25 @@ export class Game1 extends Scene {
     despawnSenzu(senzuBean){
         senzuBean.dissapear()
         this.senzuSpawned = 0
+    }
+    addNewCharacter(character, spawnedIn){  
+        if(this.spawnedIn == 2){
+            this.character = character
+            this.add(character)
+            this.spawnedIn = spawnedIn
+            console.log("test vejita") 
+        }        
+        if(this.spawnedIn == 1){
+            this.character = character
+            this.add(character)
+            this.spawnedIn = spawnedIn
+            console.log("test vejita") 
+        }
+        if(this.spawnedIn == 0){
+            this.character = character
+            this.add(character)
+            this.spawnedIn = spawnedIn
+            console.log("test nappa")  
+        }      
     }
 }

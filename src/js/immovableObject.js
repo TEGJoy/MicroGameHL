@@ -6,10 +6,11 @@ export class ImmovableObject extends Actor {
     userInterface;
 
     constructor(userInterface){
-        //super({width:Resources.dud.width, height:Resources.dud.height})
-        this.userInterface = userInterface;
+        super({width:Resources.dud.width, height:Resources.dud.height})
     }
     onInitialize(engine){
+    }
+    randomPlacer(){
         this.rand = new Random()
         this.pos = new Vector(this.rand.integer(0, 1000), this.rand.integer(0,600)) 
         this.pointer.useGraphicsBounds = true

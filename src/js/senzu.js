@@ -3,7 +3,7 @@ import { Resources } from "./resources"
 import { userInterface } from "./userinterface"
 import { Armor } from "./armor"
 import { ImmovableObject } from "./immovableObject";
-export class senzu extends Actor {
+export class senzu extends ImmovableObject {
     userInterface;
     armor;
 
@@ -12,11 +12,9 @@ export class senzu extends Actor {
         this.scene = scene;
     }
     onInitialize(engine){
-        this.rand = new Random()
         this.graphics.use(Resources.bean.toSprite())
-        this.pos = new Vector(this.rand.integer(0, 1000), this.rand.integer(0,600)) 
-        
         this.pointer.useGraphicsBounds = true
+        this.randomPlacer()
     }
     /*
     onPreUpdate(engine){

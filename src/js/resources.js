@@ -13,6 +13,7 @@ import baman from '../images/Baman.png'
 import bean from '../images/bean.png'
 import bns from '../images/bns.jpg'
 import berry from '../images/oranberryblissey.jpg'
+import yamcha from '../images/yamcha.png'
 const Resources = {
     amo: new ImageSource(amoImage),
     petah: new ImageSource(petah),
@@ -27,8 +28,9 @@ const Resources = {
     baman: new ImageSource(baman),
     bns: new ImageSource(bns),
     berry: new ImageSource(berry),
-    bean: new ImageSource(bean)
+    bean: new ImageSource(bean),
+    yamcha: new ImageSource(yamcha)
 }
-const ResourceLoader = new Loader([Resources.amo, Resources.petah, Resources.dud, Resources.holyf, Resources.scream, Resources.baman, Resources.gnome, Resources.sonofa, Resources.homah, Resources.crab, Resources.smasnug, Resources.bns, Resources.berry,Resources.bean])
+const ResourceLoader = new Loader([Resources.amo, Resources.petah, Resources.dud, Resources.holyf, Resources.scream, Resources.baman, Resources.gnome, Resources.sonofa, Resources.homah, Resources.crab, Resources.smasnug, Resources.bns, Resources.berry,Resources.bean, Resources.yamcha])
 
 export { Resources, ResourceLoader }

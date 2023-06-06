@@ -2,21 +2,19 @@ import { Actor, Input, Random, Vector, clamp } from "excalibur"
 import { Resources } from "./resources"
 import { userInterface } from "./userinterface"
 import { Armor } from "./armor"
-export class human extends Actor {
+import { ImmovableObject } from "./immovableObject";
+export class human extends ImmovableObject {
     userInterface;
     armor;
 
     constructor(userInterface){
-        super({width:Resources.dud.width, height:Resources.dud.height})
+        super({width:Resources.yamcha.width, height:Resources.yamcha.height})
         this.userInterface = userInterface;
-        this.armor = new Armor()
     }
     onInitialize(engine){
-        this.rand = new Random()
-        this.graphics.use(Resources.dud.toSprite())
-        this.pos = new Vector(this.rand.integer(0, 1000), this.rand.integer(0,600)) 
-        
+        this.graphics.use(Resources.yamcha.toSprite())
         this.pointer.useGraphicsBounds = true
+        this.randomPlacer()
     }
     /*
     onPreUpdate(engine){
